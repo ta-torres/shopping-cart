@@ -50,7 +50,8 @@ const Cart = () => {
               <CardContent>
                 <CardTitle className="font-medium">{item.title}</CardTitle>
                 <CardDescription className="text-gray-600 text-lg">
-                  ${item.price}
+                  ${item.price}. Quantity: {item.quantity}. Total: $
+                  {(item.price * item.quantity).toFixed(2)}
                 </CardDescription>
                 <div className="flex items-center gap-2 mt-2">
                   <button
