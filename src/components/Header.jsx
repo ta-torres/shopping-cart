@@ -1,6 +1,9 @@
 import { Link } from "react-router-dom";
+import { useCart } from "../context/CartContext";
 
 const Header = () => {
+  const { cartQuantity } = useCart();
+
   return (
     <header className="bg-white shadow-sm">
       <nav className="container mx-auto px-4 h-16 flex items-center justify-between">
@@ -12,7 +15,7 @@ const Header = () => {
             Home
           </Link>
           <Link to="/cart" className="hover:text-gray-600">
-            Cart (0)
+            Cart ({cartQuantity})
           </Link>
         </div>
       </nav>
