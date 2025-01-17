@@ -6,16 +6,19 @@ import "./App.css";
 import RootLayout from "./pages/RootLayout";
 import Home from "./pages/Home";
 import Cart from "./pages/Cart";
+import { CartProvider } from "./context/CartContext";
 
 function App() {
   return (
     <Router>
-      <Routes>
-        <Route element={<RootLayout />}>
-          <Route path="/" element={<Home />} />
-          <Route path="/cart" element={<Cart />} />
-        </Route>
-      </Routes>
+      <CartProvider>
+        <Routes>
+          <Route element={<RootLayout />}>
+            <Route path="/" element={<Home />} />
+            <Route path="/cart" element={<Cart />} />
+          </Route>
+        </Routes>
+      </CartProvider>
     </Router>
   );
 }
