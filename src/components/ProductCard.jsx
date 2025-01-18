@@ -12,10 +12,15 @@ import ProductQuantityInput from "./ProductQuantityInput";
 import { useState } from "react";
 
 const ProductCard = ({ product }) => {
-  const { addToCart } = useCart();
+  const { addToCart, getItemQuantity } = useCart();
   const [quantity, setQuantity] = useState(1);
 
   const handleAddToCart = () => {
+    const itemQuantity = getItemQuantity(product.id);
+    if (itemQuantity + quantity > 10) {
+      alert("You can't add more than 10 of the same product to the cart.");
+      return;
+    }
     for (let i = 0; i < quantity; i++) addToCart(product);
     setQuantity(1);
   };
