@@ -8,9 +8,17 @@ import {
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { useCart } from "../context/CartContext";
+import ProductQuantityInput from "./ProductQuantityInput";
+import { useState } from "react";
 
 const ProductCard = ({ product }) => {
   const { addToCart } = useCart();
+  const [quantity, setQuantity] = useState(1);
+
+  const handleAddToCart = () => {
+    for (let i = 0; i < quantity; i++) addToCart(product);
+    setQuantity(1);
+  };
 
   return (
     <Card className="rounded-lg flex flex-col justify-between">
@@ -26,9 +34,13 @@ const ProductCard = ({ product }) => {
         </CardDescription>
       </CardHeader>
       <CardContent>
+        <ProductQuantityInput
+          quantity={quantity}
+          onChange={(newQuantity) => setQuantity(newQuantity)}
+        />
         <Button
           className="w-full bg-blue-500 text-white px-4 py-2 rounded mt-auto hover:bg-blue-600"
-          onClick={() => addToCart(product)}
+          onClick={() => handleAddToCart()}
         >
           Add to Cart
         </Button>
