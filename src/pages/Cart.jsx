@@ -2,6 +2,7 @@ import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { useCart } from "../context/CartContext";
+import ProductQuantityInput from "../components/ProductQuantityInput";
 import {
   Card,
   CardContent,
@@ -12,7 +13,7 @@ import {
 } from "@/components/ui/card";
 
 const Cart = () => {
-  const { cartItems, removeFromCart, cartTotal } = useCart();
+  const { cartItems, removeFromCart, updateQuantity, cartTotal } = useCart();
 
   if (cartItems.length === 0) {
     return (
@@ -54,6 +55,12 @@ const Cart = () => {
                   {(item.price * item.quantity).toFixed(2)}
                 </CardDescription>
                 <div className="flex items-center gap-2 mt-2">
+                  <ProductQuantityInput
+                    quantity={item.quantity}
+                    onChange={(newQuantity) =>
+                      updateQuantity(item.id, newQuantity)
+                    }
+                  />
                   <button
                     onClick={() => removeFromCart(item.id)}
                     className="text-red-500"
