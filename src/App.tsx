@@ -6,6 +6,7 @@ import "./App.css";
 import RootLayout from "./pages/RootLayout";
 import Home from "./pages/Home";
 import Cart from "./pages/Cart";
+import ErrorPage from "./pages/ErrorPage";
 import { CartProvider } from "./context/CartContext";
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
           <Route element={<RootLayout />}>
             <Route path="/" element={<Home />} />
             <Route path="/cart" element={<Cart />} />
+            <Route path="*" element={<ErrorPage />} />
           </Route>
         </Routes>
       </CartProvider>
