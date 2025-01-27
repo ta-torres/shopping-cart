@@ -6,10 +6,16 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
 import { Button } from "@/components/ui/button";
 import { useCart } from "../context/CartContext";
 import ProductQuantityInput from "./ProductQuantityInput";
 import { useState } from "react";
+import { ShoppingCart, Tag } from "lucide-react";
 
 const ProductCard = ({ product }) => {
   const { addToCart, getItemQuantity } = useCart();
@@ -26,29 +32,43 @@ const ProductCard = ({ product }) => {
   };
 
   return (
-    <Card className="rounded-lg flex flex-col justify-between">
+    <Card className="flex flex-col justify-between rounded-xl border border-slate-300 bg-white shadow-md transition-shadow hover:shadow-lg">
       <CardHeader>
         <img
           src={product.image}
           alt={product.title}
-          className="h-48 w-full object-contain mb-4"
+          className="mb-4 h-48 w-full rounded-xl bg-teal-50 object-contain p-4"
         />
-        <CardTitle className="font-medium mb-2">{product.title}</CardTitle>
-        <CardDescription className="text-gray-600 mb-4 text-xl">
-          ${product.price}
-        </CardDescription>
+        <CardTitle className="line-clamp-2 font-semibold text-teal-900">
+          {product.title}
+        </CardTitle>
       </CardHeader>
-      <CardContent>
-        <ProductQuantityInput
-          quantity={quantity}
-          onChange={(newQuantity) => setQuantity(newQuantity)}
-        />
-        <Button
-          className="w-full bg-blue-500 text-white px-4 py-2 rounded mt-auto hover:bg-blue-600"
-          onClick={() => handleAddToCart()}
-        >
-          Add to Cart
-        </Button>
+      <CardContent className="space-y-4">
+        <div className="flex items-center justify-between text-teal-700">
+          <div className="flex items-center gap-2">
+            <Tag className="h-5 w-5" />
+            <span className="text-xl font-bold">${product.price}</span>
+          </div>
+          <ProductQuantityInput quantity={quantity} onChange={setQuantity} />
+        </div>
+        <Popover>
+          <PopoverTrigger asChild>
+            <Button
+              className="w-full bg-teal-600 font-medium text-white transition-colors hover:bg-teal-700"
+              onClick={handleAddToCart}
+            >
+              <ShoppingCart className="mr-2 h-4 w-4" />
+              Add to Cart
+            </Button>
+          </PopoverTrigger>
+          <PopoverContent
+            align="center"
+            sideOffset={4}
+            className="h-max w-max rounded-xl border border-slate-400"
+          >
+            <p>Added to cart</p>
+          </PopoverContent>
+        </Popover>
       </CardContent>
     </Card>
   );

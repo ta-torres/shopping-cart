@@ -16,7 +16,7 @@ const ProductQuantityInput = ({ quantity, onChange }) => {
         variant="outline"
         size="icon"
         onClick={decrement}
-        className="h-8 w-8"
+        className="h-8 w-8 border-slate-300 hover:border-slate-400 hover:bg-slate-50"
       >
         -
       </Button>
@@ -27,14 +27,14 @@ const ProductQuantityInput = ({ quantity, onChange }) => {
         max="99"
         value={quantity}
         onChange={handleInputChange}
-        className="w-16 text-center h-8"
+        className="h-8 w-16 border-slate-300 text-center focus:border-slate-400"
       />
 
       <Button
         variant="outline"
         size="icon"
         onClick={increment}
-        className="h-8 w-8"
+        className="h-8 w-8 border-slate-300 hover:border-slate-400 hover:bg-slate-50"
       >
         +
       </Button>

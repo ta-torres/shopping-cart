@@ -1,8 +1,10 @@
 const Footer = () => {
   return (
-    <footer className="bg-gray-100 py-6">
-      <div className="container mx-auto px-4 text-center text-gray-600">
-        <p>ShopCart</p>
+    <footer className="bg-teal-800 py-8 shadow-lg">
+      <div className="container mx-auto px-4 text-center">
+        <p className="text-lg font-bold text-teal-100 transition-colors hover:text-teal-200">
+          ShopCart © {new Date().getFullYear()}
+        </p>
       </div>
     </footer>
   );
